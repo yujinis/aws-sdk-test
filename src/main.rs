@@ -126,6 +126,8 @@ async fn test_client_ec2() -> Result<(),Ec2Error>{
               max_count(1);
     let resp = req.send().await?;
 
+    thread::sleep(Duration::from_millis(1000));
+
     let id = match resp.instances {
         Some(instance) => { instance[0].instance_id.as_ref().unwrap().clone() },
         None => { String::from("") }
